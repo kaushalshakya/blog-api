@@ -1,5 +1,6 @@
 const express = require('express');
 const errorHandler = require('./middlewares/errorHandler');
+const { registerRouter } = require('./routes');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
     )
 })
 
+app.use('/api/v1/register', registerRouter);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
