@@ -1,0 +1,1 @@
+const registerRouter = require('./auth/registerRoute');
