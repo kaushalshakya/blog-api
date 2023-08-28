@@ -1,11 +1,18 @@
 const express = require('express');
 const errorHandler = require('./middlewares/errorHandler');
-const { registerRouter } = require('./routes');
+const { 
+    registerRoute, 
+    loginRoute 
+} = require('./routes');
 const app = express();
+
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cookieParser());
 app.use(express.json());
+
 
 app.get('/', (req, res) => {
     res.status(200).json(
@@ -16,7 +23,8 @@ app.get('/', (req, res) => {
     )
 })
 
-app.use('/api/v1/register', registerRouter);
+app.use('/api/v1/register', registerRoute);
+app.use('/api/v1/login', loginRoute);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
