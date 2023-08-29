@@ -41,9 +41,17 @@ const putPosts = asyncHandler(async(id, data) => {
     return response;
 })
 
+const deletePost = asyncHandler(async(id) => {
+    qb = await pool.get_connection();
+    const response = await qb.delete('posts', {id});
+    await qb.release();
+    return response;
+})
+
 module.exports = {
     createPosts,
     readPosts,
     putPosts,
-    getPostById
+    getPostById,
+    deletePost
 }

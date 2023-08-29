@@ -2,7 +2,8 @@ const {
     createPosts, 
     readPosts,
     putPosts,
-    getPostById
+    getPostById,
+    deletePost
 } = require('../models/postModels');
 const asyncHandler = require('express-async-handler');
 
@@ -84,8 +85,33 @@ const updatePosts = asyncHandler(async(req, res) => {
 
 })
 
+const removePost = asyncHandler(async(req, res) => {
+    const id = req.params.id;
+
+    const checkAuthor = await getPostById(id);
+
+    if(checkAuthor[0].post_author !== req.id) {
+        return res.status(400).json(
+            {
+                status: 400,
+                message: 'This post does not belong to this user'
+            }
+        )
+    }
+
+    await deletePost(id);
+
+    return res.status(200).json(
+        {
+            status: 200,
+            message: 'Post deleted successfully'
+        }
+    )
+})
+
 module.exports = {
     addPost,
     allPosts,
-    updatePosts
+    updatePosts,
+    removePost
 }
