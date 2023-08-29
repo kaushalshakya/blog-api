@@ -3,7 +3,8 @@ const errorHandler = require('./middlewares/errorHandler');
 const { 
     registerRoute, 
     loginRoute, 
-    postRoutes
+    postRoutes,
+    logoutRoute
 } = require('./routes');
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/v1/login', loginRoute);
 
 app.use(verifyJwt);
 
+app.use('/api/v1/logout', logoutRoute);
 app.use('/api/v1/posts', postRoutes);
 
 app.use(errorHandler);
