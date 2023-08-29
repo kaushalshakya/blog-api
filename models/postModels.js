@@ -15,6 +15,35 @@ const createPosts = asyncHandler(async(data) => {
     return response;
 })
 
+const readPosts = asyncHandler(async () => {
+    qb = await pool.get_connection();
+    const response = await qb.select('*').from('posts').get();
+    await qb.release();
+    return response;
+})
+
+const getPostById = asyncHandler(async (id) => {
+    qb = await pool.get_connection();
+    const response = await qb.select('*').from('posts').where({id}).get();
+    await qb.release();
+    return response;
+}) 
+
+const putPosts = asyncHandler(async(id, data) => {
+    qb = await pool.get_connection();
+    const response = await qb.update('posts', {
+        post_title: data.post_title,
+        post_content: data.post_content,
+        post_image: data.post_image,
+    }, {id});
+
+    await qb.release();
+    return response;
+})
+
 module.exports = {
-    createPosts
+    createPosts,
+    readPosts,
+    putPosts,
+    getPostById
 }
