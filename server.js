@@ -4,7 +4,8 @@ const {
     registerRoute, 
     loginRoute, 
     postRoutes,
-    logoutRoute
+    logoutRoute,
+    profileRoutes
 } = require('./routes');
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(verifyJwt);
 
 app.use('/api/v1/logout', logoutRoute);
 app.use('/api/v1/posts', postRoutes);
+app.use('/api/v1/profile', profileRoutes);
 
 app.use(errorHandler);
 
