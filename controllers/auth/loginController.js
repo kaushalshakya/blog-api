@@ -63,9 +63,7 @@ const loginUser = asyncHandler(async (req, res) => {
         process.env.REFRESH_TOKEN,
         // {expiresIn: '20m'}
         )
-        
-    console.log(refreshToken);
-    console.log('here');
+    
 
     res.cookie('accessToken', accessToken, { httpOnly: true, secure: false });
     res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: false });

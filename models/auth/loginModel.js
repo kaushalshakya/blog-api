@@ -12,7 +12,6 @@ const setRefreshToken = asyncHandler(async(email, refreshToken) => {
     const qb = await pool.get_connection();
     const response = await qb.update('users', {refresh_token: refreshToken}, {email});
     await qb.release();
-    console.log(response);
     return response;
 })
 
