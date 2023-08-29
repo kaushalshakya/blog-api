@@ -10,6 +10,14 @@ const getProfile = asyncHandler(async(id) => {
     return response;
 })
 
+const getUserPosts = asyncHandler(async(id) => {
+    qb = await pool.get_connection();
+    const response = await qb.select('post_title, post_content post_content').from('posts').where({post_author: id}).get();
+    await qb.release();
+    return response;
+})
+
 module.exports = {
-    getProfile
+    getProfile,
+    getUserPosts
 }
