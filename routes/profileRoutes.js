@@ -1,6 +1,7 @@
 const { 
     viewProfile, 
-    updateProfile
+    updateProfile,
+    removeProfile
 } = require('../controllers/profileControllers');
 
 const router = require('express').Router();
@@ -21,6 +22,6 @@ const upload = multer({ storage: storage });
 
 router.get('/', viewProfile);
 router.put('/', upload.single('image'), updateProfile);
-router.delete('/');
+router.delete('/', removeProfile);
 
 module.exports = router;

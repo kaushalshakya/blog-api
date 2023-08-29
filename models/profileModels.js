@@ -30,8 +30,16 @@ const putProfile = asyncHandler(async(id, data) => {
     return response;
 })
 
+const deleteProfile = asyncHandler(async(id) => {
+    qb = await pool.get_connection();
+    const response = await qb.delete('users', {id});
+    await qb.release();
+    return response;
+})
+
 module.exports = {
     getProfile,
     getUserPosts,
-    putProfile
+    putProfile,
+    deleteProfile
 }

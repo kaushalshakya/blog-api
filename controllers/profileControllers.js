@@ -1,7 +1,8 @@
 const {
     getProfile, 
     getUserPosts,
-    putProfile
+    putProfile,
+    deleteProfile
 } = require('../models/profileModels');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
@@ -62,7 +63,19 @@ const updateProfile = asyncHandler(async(req, res) => {
 
 })
 
+const removeProfile = asyncHandler(async(req, res) => {
+    const id = req.id;
+    await deleteProfile(id);  
+    return res.status(200).json(
+        {
+            status: 200,
+            message: 'Account deleted successfully'
+        }
+    )
+})
+
 module.exports = {
     viewProfile,
-    updateProfile
+    updateProfile,
+    removeProfile
 }
