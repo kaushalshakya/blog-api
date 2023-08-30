@@ -45,7 +45,8 @@ const loginUser = asyncHandler(async (req, res) => {
             id: checkUser[0].id,
             first_name: checkUser[0].first_name,
             last_name: checkUser[0].last_name,
-            image: checkUser[0].image
+            image: checkUser[0].image,
+            email: checkUser[0].email
         },
         process.env.ACCESS_TOKEN,
         // {expiresIn: '20s'}
@@ -58,7 +59,8 @@ const loginUser = asyncHandler(async (req, res) => {
             id: checkUser[0].id,
             first_name: checkUser[0].first_name,
             last_name: checkUser[0].last_name,
-            image: checkUser[0].image
+            image: checkUser[0].image,
+            email: checkUser[0].email
         },
         process.env.REFRESH_TOKEN,
         // {expiresIn: '20m'}
