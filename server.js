@@ -5,7 +5,8 @@ const {
     loginRoute, 
     postRoutes,
     logoutRoute,
-    profileRoutes
+    profileRoutes,
+    homeRoute
 } = require('./routes');
 const app = express();
 
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/register', registerRoute);
 app.use('/api/v1/login', loginRoute);
+app.use('/api/v1/home', homeRoute);
 
 app.use(verifyJwt);
 
