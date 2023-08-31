@@ -10,6 +10,7 @@ const {
     refreshRoute
 } = require('./routes');
 const app = express();
+const cors = require('cors');
 
 const cookieParser = require('cookie-parser');
 const verifyJwt = require('./middlewares/verifyJwt');
@@ -18,7 +19,8 @@ const PORT = process.env.PORT || 4000;
 
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(cors());
+app.use(express.static('uploads'));
 
 app.get('/', (req, res) => {
     res.status(200).json(

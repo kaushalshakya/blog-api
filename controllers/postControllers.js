@@ -12,7 +12,7 @@ const addPost = asyncHandler(async(req, res) => {
     console.log(id);
     const image = req.file;
 
-    if(!req.body.post_title || !req.body.post_content || !req.body.post_image) {
+    if(!req.body.post_title && !req.body.post_content && !req.body.post_image) {
         return res.status(400).json(
             {
                 status: 400,
