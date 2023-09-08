@@ -52,8 +52,6 @@ const loginUser = asyncHandler(async (req, res) => {
         // {expiresIn: '20s'}
     )
 
-    console.log(accessToken);
-    
     const refreshToken = jwt.sign(
         {
             id: checkUser[0].id,
@@ -67,10 +65,12 @@ const loginUser = asyncHandler(async (req, res) => {
         )
     
 
-    res.cookie('accessToken', accessToken, { httpOnly: true, secure: false });
-    res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: false });
+    res.cookie('accessToken', accessToken, { httpOnly: true, secure: true });
+    res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true });
 
     setRefreshToken(email, refreshToken);
+    
+    console.log('User logged in');
 
     return res.status(200).json(
         {

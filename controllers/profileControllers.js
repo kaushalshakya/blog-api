@@ -16,7 +16,7 @@ const viewProfile = asyncHandler(async (req, res) => {
             status: 200,
             message: 'Your details:',
             details: response,
-            posts: posts
+            posts: posts[0] ? posts : `You don't have any posts`
         }
     )
 })

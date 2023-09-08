@@ -42,8 +42,8 @@ const refreshToken = asyncHandler((req, res) => {
 
         await setRefreshToken(email, newRefreshToken);
 
-        res.cookie('accessToken', newAccessToken, { httpOnly: true, secure: false });
-        res.cookie('refreshToken', newRefreshToken, { httpOnly: true, secure: false });
+        res.cookie('accessToken', newAccessToken, { httpOnly: true, secure: true });
+        res.cookie('refreshToken', newRefreshToken, { httpOnly: true, secure: true });
 
 
         return res.status(200).json(

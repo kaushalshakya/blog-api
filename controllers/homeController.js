@@ -8,7 +8,7 @@ const homePage = asyncHandler(async (req, res) => {
     return res.status(200).json({
         status: 200,
         message: 'Welcome user!',
-        response: response
+        response: response[0] ? response : null
     })
 })
 

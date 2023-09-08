@@ -12,7 +12,7 @@ const getProfile = asyncHandler(async(id) => {
 
 const getUserPosts = asyncHandler(async(id) => {
     qb = await pool.get_connection();
-    const response = await qb.select('post_title, post_content post_content').from('posts').where({post_author: id}).get();
+    const response = await qb.select('id, post_title, post_content, post_image, post_added').from('posts').where({post_author: id}).get();
     await qb.release();
     return response;
 })
